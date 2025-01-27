@@ -1,10 +1,18 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Note from "../Note/Note";
 import AddNoteModel from "../AddNoteModel/AddNoteModel";
+import axios from "axios";
 
 const NoteSection = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [notes, setNotes] = useState([]);
+
+  const fetchNote = async () => {
+    const response = await axios.get("http://localhost:3000/API/AddNote/");
+    setNotes(response.data.notes);
+    console.log(response.data.notes);
+  };
 
   const handleAddNoteClick = () => {
     setIsPopupOpen(true);
@@ -13,6 +21,10 @@ const NoteSection = () => {
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
+
+  useEffect(() => {
+    fetchNote();
+  }, []);
 
   return (
     <div>
@@ -23,11 +35,18 @@ const NoteSection = () => {
         >
           Add New Note
         </button>
-        <h1 className="text-xl font-bold mb-6 text-center">My Notes</h1>
+        <h1 className="text-lg font-bold mb-6 text-center">My Notes</h1>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 pb-8">
-          {[1, 2, 3, 4, 5].map((_, index) => (
-            <Note key={index} index={index} />
-          ))}
+          {notes.map((item, index) => {
+            return (
+              <Note
+                id={item._id}
+                title={item.title}
+                content={item.content}
+                date={item.date}
+              />
+            );
+          })}
         </div>
       </div>
 

@@ -110,5 +110,5 @@ export async function DELETE(request) {
 
   const note = await NoteModel.findById(id);
   await NoteModel.findByIdAndDelete(id);
-  return NextResponse.json({ msg: "Note  Deleted" });
+  return NextResponse.json({ msg: "Note  Deleted", success: true });
 }
