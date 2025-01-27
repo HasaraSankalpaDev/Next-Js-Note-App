@@ -60,6 +60,7 @@ const Note = ({ title, content, date, id }) => {
         >
           Edit
         </button>
+
         <button
           onClick={() => handleDeleteNote(id)}
           className="bg-red-500 text-white py-1 px-4 rounded hover:bg-red-600 transition"
@@ -70,9 +71,10 @@ const Note = ({ title, content, date, id }) => {
       {isPopupOpen && (
         <EditNoteModel
           handleClosePopup={handleClosePopup}
-          date={noteData.date}
-          title={noteData.title}
-          content={noteData.content}
+          date={date}
+          title={title}
+          content={content}
+          id={id}
         />
       )}
     </div>

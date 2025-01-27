@@ -3,6 +3,7 @@ import React from "react";
 import "./index.css";
 import NoteSection from "@/Components/NoteSection/NoteSection";
 import { ToastContainer } from "react-toastify";
+import Footer from "@/Components/Footer/Footer";
 
 const page = () => {
   return (
@@ -10,6 +11,7 @@ const page = () => {
       <ToastContainer theme="light" />
       <Header />
       <NoteSection />
+      <Footer />
     </div>
   );
 };
