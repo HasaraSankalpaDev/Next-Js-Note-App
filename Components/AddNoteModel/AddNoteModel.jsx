@@ -65,6 +65,7 @@ const AddNoteModel = ({ handleClosePopup }) => {
             value={data.content}
             onChange={handleChange}
             required
+            maxLength={900}
           ></textarea>
           <input
             className="w-full border rounded p-2 mb-6"
